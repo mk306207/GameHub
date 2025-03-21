@@ -2,4 +2,6 @@
 
 ## How to run a server?
 Simply just type in terminal this
-```py manage.py runserver```
+
+```terminal
+py manage.py runserver
