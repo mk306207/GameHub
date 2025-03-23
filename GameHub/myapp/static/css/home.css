@@ -28,7 +28,3 @@ body{
 .myButton:hover {
 	background-color:#750b6e;
 }
-.myButton:active {
-	position:relative;
-	top:1px;
-}
