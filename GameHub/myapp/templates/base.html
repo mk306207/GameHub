@@ -7,12 +7,10 @@
     <title>Home Page</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
 </head>
+<div class="myBar">
+    <a href="login" class="myButton">Login</a>
+</div>
 <body>
     <h1>hi!</h1>
-    {% comment %} <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        <a href="#" class="myButton">green</a>
-    </form> {% endcomment %}
-    <a href="login" class="myButton">Login</a>
 </body>
 </html>

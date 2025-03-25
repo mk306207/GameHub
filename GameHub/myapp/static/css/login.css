@@ -3,7 +3,6 @@ body{
     padding: 0;
     height: 100vh;
     /*min-height: 200vh;*/
-    width: 100vw;
     background: rgb(63,94,251);
     background: linear-gradient(0deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
     background-size: cover;
