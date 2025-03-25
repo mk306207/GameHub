@@ -29,11 +29,11 @@ body{
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Arial;
 	font-size:13px;
 	padding:11px 21px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #000000;
+    font-family: 'Press Start 2P', cursive;
 }
 .myButton:hover {
 	background-color:#750b6e;

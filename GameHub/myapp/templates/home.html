@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <script src="https://kit.fontawesome.com/6ca08112e0.js" crossorigin="anonymous"></script>
+    <link href="{% static 'css/imports.css' %}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
 </head>
 <div class="myBar">
-    <a href="" class="fa-solid fa-house fa-2xl homeIcon"></a>
-    <a href="login" class="myButton">Login</a>
+    <a href="{%url 'home' %}" class="fa-solid fa-house fa-2xl homeIcon"></a>
+    <a href="{%url 'login' %}" class="myButton">Login</a>
 </div>
 <body>
     <h1>hi!</h1>
