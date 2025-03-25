@@ -1,2 +1,22 @@
 {% extends "base.html" %}
 {% load static %}
+{% block title %}Logging in...{% endblock %}
+{% block additional_stylesheets%}
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&display=swap" rel="stylesheet">
+{%endblock%}
+{% block loginForm %}
+    <form class="form">
+        <label class="label">
+            <span class="label-text">Username</span>
+            <input class="input" type="text" spellcheck="false" placeholder="Enter your username">
+        </label>
+        <label class="label">
+            <span class="label-text">Password</span>
+            <input class="input" type="password" spellcheck="false" placeholder="Enter your password">
+        </label>
+    </form>
+{% endblock %}
+{% block content%}
+<h1 class ="textExample"> HALOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO </h1>
+{% endblock %}

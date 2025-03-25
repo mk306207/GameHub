@@ -7,7 +7,9 @@
     <script src="https://kit.fontawesome.com/6ca08112e0.js" crossorigin="anonymous"></script>
     <link href="{% static 'css/imports.css' %}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
-    <title>{% block title %}Strona{% endblock %}</title>
+    <title>{% block title %}Placeholder_name{% endblock %}</title>
+    {%block additional_stylesheets%}
+    {%endblock%}
 </head>
 <div class="myBar">
     <a href="{%url 'home' %}" class="fa-solid fa-house fa-2xl homeIcon"></a>
@@ -16,10 +18,17 @@
     {% endif %}
 </div>
 <body>
-    <div class = content>
-        {% block content %}
+    {% if request.resolver_match.url_name != 'login' %}
+        <div class = content>
+            {% block content %}
+
+            {% endblock %}
+        </div>
+    {% endif %}
+    {% if request.resolver_match.url_name == 'login' %}
+        {% block loginForm %}
 
         {% endblock %}
-    </div>
+    {% endif %}
 </body>
 </html>
