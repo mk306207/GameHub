@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/6ca08112e0.js" crossorigin="anonymous"></script>
+    <link href="{% static 'css/imports.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    <title>{% block title %}Strona{% endblock %}</title>
+</head>
+<div class="myBar">
+    <a href="{%url 'home' %}" class="fa-solid fa-house fa-2xl homeIcon"></a>
+    {% if request.resolver_match.url_name != 'login' %}
+        <a href="{% url 'login' %}" class="myButton">Login</a>
+    {% endif %}
+</div>
+<body>
+    <div class = content>
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</body>
+</html>

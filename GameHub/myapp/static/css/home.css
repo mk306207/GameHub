@@ -38,6 +38,11 @@ body{
 .myButton:hover {
 	background-color:#750b6e;
 }
+.myButton:disabled{
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: default;
+}
 .homeIcon{
     position: absolute;
     top: 22px;
@@ -50,3 +55,6 @@ body{
     color: #3b3737;
 }
 /* TEST */
+.content{
+    margin-top:50px;
+}
