@@ -38,3 +38,14 @@ body{
 .myButton:hover {
 	background-color:#750b6e;
 }
+.homeIcon{
+    position: absolute;
+    top: 22px;
+    left: 10px;
+    color: #ffffff;
+    cursor: pointer;
+    text-decoration: none;
+}
+.homeIcon:hover{
+    color: #3b3737;
+}
