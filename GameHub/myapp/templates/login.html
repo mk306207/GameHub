@@ -6,15 +6,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&display=swap" rel="stylesheet">
 {%endblock%}
 {% block loginForm %}
-    <form class="form">
+    <form class="form" method="POST">
+        {% csrf_token %}
         <label class="label">
             <span class="label-text">Username</span>
-            <input class="input" type="text" spellcheck="false" placeholder="Enter your username">
+            <input class="input" type="text" name="login" spellcheck="false" placeholder="Enter your username">
         </label>
         <label class="label">
             <span class="label-text">Password</span>
-            <input class="input" type="password" spellcheck="false" placeholder="Enter your password">
+            <input class="input" type="password" name="password" spellcheck="false" placeholder="Enter your password">
         </label>
+        <button type="submit" class="loginButton">Login</button>
     </form>
 {% endblock %}
 {% block content%}
