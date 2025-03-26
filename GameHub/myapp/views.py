@@ -14,14 +14,18 @@ def login_manager(request):
     if request.method == "POST":
         login_input = request.POST.get("login")
         password_input = request.POST.get("password")
+        button = request.POST.get("button")
         print(f"Login: {login_input}, Password: {password_input}")
-        try:
-            user = usersList.objects.get(login=login_input, password=password_input)
-            request.session["user_id"] = user.id
-            messages.success(request, "Succesfully logged in!")
-            return redirect("dashboard")
-        except usersList.DoesNotExist:
-            messages.error(request, "Login or password incorrect!")
+        if button == "login":
+            try:
+                user = usersList.objects.get(login=login_input, password=password_input)
+                request.session["user_id"] = user.id
+                messages.success(request, "Succesfully logged in!")
+                return redirect("dashboard")
+            except usersList.DoesNotExist:
+                messages.error(request, "Login or password incorrect!")
+        elif button == "register":
+            return redirect("register")
 
     return render(request, "login.html")
 
