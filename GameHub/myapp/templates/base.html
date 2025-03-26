@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/6ca08112e0.js" crossorigin="anonymous"></script>
     <link href="{% static 'css/imports.css' %}" rel="stylesheet">
+    <link href="{% static 'css/massage.css' %}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
     <title>{% block title %}Placeholder_name{% endblock %}</title>
     {%block additional_stylesheets%}
@@ -18,6 +19,13 @@
     {% endif %}
 </div>
 <body>
+    {% if messages %}
+  <ul>
+    {% for message in messages %}
+      <li class="message {{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+    {% endif %}
     {% if request.resolver_match.url_name != 'login' and request.resolver_match.url_name != 'register'%}
         <div class = content>
             {% block content %}
