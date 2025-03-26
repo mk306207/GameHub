@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse,redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from myapp.models import usersList
+from myapp.models import usersList,userInfo
 
 # Create your views here.
 def home(request):
@@ -38,3 +38,13 @@ def dashboard(request):
         return redirect("login")
     
     return render(request, "dashboard.html")
+
+def register(request):
+    if request.method == "POST":
+        login_input = request.POST.get("login")
+        password_input = request.POST.get("password")
+        email_input = request.POST.get("email")
+        print(f"Data collected:\nlogin: {login_input}\npassword: {password_input}\nemail: {email_input}")
+        new_user = usersList.objects.create(login=login_input, password=password_input)
+        user_email = userInfo.objects.create(logANDpsw=new_user, email=email_input)
+    return render(request, "register.html")

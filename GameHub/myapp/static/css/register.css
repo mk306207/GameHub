@@ -10,6 +10,7 @@ body {
     padding: 24px;
     max-width: 300px;
     font-family: 'Lexend', sans-serif;
+    
 }
 .form * {
     font-family: 'Lexend', sans-serif;
@@ -39,17 +40,17 @@ body {
 .input:focus{
     border-color: #009578;
 }
-.loginButton {
-    display: inline-block;
-    margin: 0 auto;
+.registerButton {
+    display: block;
 	background-color:#65117a;
     color:#e0e0e0;
 	border-radius:28px;
 	border:7px solid #65117a;
 	cursor:pointer;
 	text-decoration:none;
+    margin: 0 auto;
 }
-.loginButton:hover {
+.registerButton:hover {
     border:7px solid #750b6e;
 	background-color:#750b6e;
 }

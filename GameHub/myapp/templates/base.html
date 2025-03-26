@@ -18,14 +18,14 @@
     {% endif %}
 </div>
 <body>
-    {% if request.resolver_match.url_name != 'login' %}
+    {% if request.resolver_match.url_name != 'login' and request.resolver_match.url_name != 'register'%}
         <div class = content>
             {% block content %}
 
             {% endblock %}
         </div>
     {% endif %}
-    {% if request.resolver_match.url_name == 'login' %}
+    {% if request.resolver_match.url_name == 'login' or request.resolver_match.url_name == 'register'%}
         {% block loginForm %}
 
         {% endblock %}
