@@ -18,6 +18,9 @@
     {% if request.resolver_match.url_name != 'login' %}
         <a href="{% url 'login' %}" class="myButton">Login</a>
     {% endif %}
+    {% if request.resolver_match.url_name == 'dashboard'%}
+        <a href="{% url 'logout' %}" class="myButton">Logout</a>
+    {% endif %}
 </div>
 <body>
     {% if messages %}
