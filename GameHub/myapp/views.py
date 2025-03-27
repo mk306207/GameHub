@@ -20,6 +20,8 @@ def login_manager(request):
             try:
                 user = usersList.objects.get(login=login_input, password=password_input)
                 request.session["user_id"] = user.id
+                request.session["user_login"] = user.login
+                request.session["user_password"] = user.password
                 messages.success(request, "Succesfully logged in!")
                 return redirect("dashboard")
             except usersList.DoesNotExist:

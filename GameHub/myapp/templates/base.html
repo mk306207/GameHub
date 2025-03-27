@@ -7,6 +7,7 @@
     <script src="https://kit.fontawesome.com/6ca08112e0.js" crossorigin="anonymous"></script>
     <link href="{% static 'css/imports.css' %}" rel="stylesheet">
     <link href="{% static 'css/massage.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
     <title>{% block title %}Placeholder_name{% endblock %}</title>
     {%block additional_stylesheets%}
@@ -20,11 +21,11 @@
 </div>
 <body>
     {% if messages %}
-  <ul>
-    {% for message in messages %}
-      <li class="message {{ message.tags }}">{{ message }}</li>
-    {% endfor %}
-  </ul>
+    <div class="message-container" id="messageContainer">
+            {% for message in messages %}
+            <li class="message {{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+    </div>
     {% endif %}
     {% if request.resolver_match.url_name != 'login' and request.resolver_match.url_name != 'register'%}
         <div class = content>
@@ -38,5 +39,34 @@
 
         {% endblock %}
     {% endif %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const messageContainer = document.getElementById('messageContainer');
+            if (messageContainer) {
+                const messages = messageContainer.querySelectorAll('.message');
+                messages.forEach(message => 
+                {const type = Array.from(message.classList)
+                        .find(cls => ['error', 'success', 'warning', 'info'].includes(cls)) || 'info';
+                    showMessage(message.textContent, type);
+                });
+            }
+            function showMessage(message, type = 'info') {
+                const container = document.getElementById('messageContainer');
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message', type);
+                messageElement.textContent = message;
+                container.appendChild(messageElement);
+                setTimeout(() => {
+                    messageElement.classList.add('show');
+                }, 10);
+                setTimeout(() => {
+                    messageElement.classList.add('hide');
+                }, 2000);
+                setTimeout(() => {
+                    container.removeChild(messageElement);
+                }, 2500);
+            }
+        });
+    </script>
 </body>
 </html>
