@@ -1,13 +1,15 @@
 from django.shortcuts import render, HttpResponse,redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from myapp.models import usersList,userInfo
+from myapp.models import myUser
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
 
-def login(request):
+def login_view(request):
     return render(request, 'login.html')
 
 def login_manager(request):
@@ -18,27 +20,30 @@ def login_manager(request):
         print(f"Login: {login_input}, Password: {password_input}")
         if button == "login":
             try:
-                user = usersList.objects.get(login=login_input, password=password_input)
-                request.session["user_id"] = user.id
-                request.session["user_login"] = user.login
-                request.session["user_password"] = user.password
-                messages.success(request, "Succesfully logged in!")
-                return redirect("dashboard")
-            except usersList.DoesNotExist:
-                messages.error(request, "Login or password incorrect!")
+                user = myUser.objects.get(username = login_input)
+                #print(f"correct username: {user.get_username()} correct password: {user.password} {user.check_password(password_input)}")
+                if user.check_password(password_input):
+                    messages.success(request, "Welcome back!")
+                    login(request,user)
+                    return redirect("dashboard")
+                else:
+                    messages.error(request,"Wrong password!")
+            except ObjectDoesNotExist:
+                messages.error(request, "Wrong username!")
+            # if():
+            #     return redirect("dashboard")
         elif button == "register":
             return redirect("register")
 
     return render(request, "login.html")
 
-def logout(request):
-    request.session.flush()
-    return redirect("login")
+def logout_handler(request):
+    logout(request)
+    return redirect("login_view")
 
 def dashboard(request):
-    if "user_id" not in request.session:
-        return redirect("login")
-    
+    if not request.user.is_authenticated:
+        return redirect("login_view")
     return render(request, "dashboard.html")
 
 def register(request):
@@ -50,7 +55,8 @@ def register(request):
             messages.error(request, "Fill all the spaces!")
             return render(request, "register.html")
         print(f"Data collected:\nlogin: {login_input}\npassword: {password_input}\nemail: {email_input}")
-        new_user = usersList.objects.create(login=login_input, password=password_input)
-        user_email = userInfo.objects.create(logANDpsw=new_user, email=email_input)
-        return redirect("login")
+        new_user = myUser.objects.create(username=login_input,email=email_input)
+        new_user.set_password(password_input)
+        new_user.save()
+        return redirect("login_view")
     return render(request, "register.html")

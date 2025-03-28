@@ -8,6 +8,5 @@
 {% endblock %}
 
 {% block content %}
-<p>Hello! {{request.session.user_login}}</p>
-<p>user id: {{ request.session.user_id }}</p>
+<p>Hello! {{request.user.username}}</p>
 {% endblock %}

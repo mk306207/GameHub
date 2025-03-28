@@ -16,10 +16,10 @@
 <div class="myBar">
     <a href="{%url 'home' %}" class="fa-solid fa-house fa-2xl homeIcon"></a>
     {% if request.resolver_match.url_name != 'login' %}
-        <a href="{% url 'login' %}" class="myButton">Login</a>
+        <a href="{% url 'login_view' %}" class="myButton">Login</a>
     {% endif %}
     {% if request.resolver_match.url_name == 'dashboard'%}
-        <a href="{% url 'logout' %}" class="myButton">Logout</a>
+        <a href="{% url 'logout_handler' %}" class="myButton">Logout</a>
     {% endif %}
 </div>
 <body>
@@ -30,14 +30,14 @@
             {% endfor %}
     </div>
     {% endif %}
-    {% if request.resolver_match.url_name != 'login' and request.resolver_match.url_name != 'register'%}
+    {% if request.resolver_match.url_name != 'login_view' and request.resolver_match.url_name != 'register'%}
         <div class = content>
             {% block content %}
 
             {% endblock %}
         </div>
     {% endif %}
-    {% if request.resolver_match.url_name == 'login' or request.resolver_match.url_name == 'register'%}
+    {% if request.resolver_match.url_name == 'login_view' or request.resolver_match.url_name == 'register'%}
         {% block loginForm %}
 
         {% endblock %}
