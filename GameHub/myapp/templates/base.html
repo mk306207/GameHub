@@ -15,10 +15,10 @@
 </head>
 <div class="myBar">
     <a href="{%url 'home' %}" class="fa-solid fa-house fa-2xl homeIcon"></a>
-    {% if request.resolver_match.url_name != 'login' %}
+    {% if not user.is_authenticated %}
         <a href="{% url 'login_view' %}" class="myButton">Login</a>
     {% endif %}
-    {% if request.resolver_match.url_name == 'dashboard'%}
+    {% if user.is_authenticated %}
         <a href="{% url 'logout_handler' %}" class="myButton">Logout</a>
     {% endif %}
 </div>
