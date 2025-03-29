@@ -60,3 +60,10 @@ def register(request):
         new_user.save()
         return redirect("login_view")
     return render(request, "register.html")
+
+def delete_user(request):
+    user = myUser.objects.get(username = request.user.username)
+    logout(request)
+    user.delete()
+    messages.error(request, "User deleted")
+    return redirect("login_view")
