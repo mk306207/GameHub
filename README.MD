@@ -14,3 +14,8 @@ you should see some files, but you must see manage.py, if you see it you`re good
 ```terminal
 py manage.py runserver
 ```
+
+### TODO LIST TO REMEMBER IN THE NEAR FUTURE
+📌 **posts**
+📌 **fix "whats on your mind" button**
+📌 **logging out after closing browser**

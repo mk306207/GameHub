@@ -27,3 +27,7 @@ class myUser(AbstractUser):
         return self.username
     def get_password(self):
         return self.password
+    
+class Post(models.Model):
+    author = models.ForeignKey(myUser,on_delete=models.CASCADE, to_field="username")
+    text = models.TextField()

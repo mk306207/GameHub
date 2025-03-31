@@ -4,7 +4,6 @@
 {% block additional_stylesheets %}
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
-<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}"> -->
 <link rel="stylesheet" type="text/css" href="{% static 'css/posts.css' %}">
 {% endblock %}
 {% block content %}
@@ -14,7 +13,8 @@
         <p class="singlePost"> First post! </p>
     </div>
     {% endif %}
-    {% if not user.is_authenticated %}
-        <a>GameHub logo here</a>
-    {% endif %}
 {% endblock %}
+{% block welcome %}
+    <p class = "welcomeTextTitle"> GameHub </p>
+    <p> Are you looking for duo, trio or maybe a five stack? You are in the right place! Sing up now, set up a profile and find people to play with! </p>
+{% endblock%}

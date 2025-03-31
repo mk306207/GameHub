@@ -67,3 +67,7 @@ def delete_user(request):
     user.delete()
     messages.error(request, "User deleted")
     return redirect("login_view")
+
+def make_post(request):
+    user = myUser.objects.get(username = request.user.username) #TODO
+    return redirect(request, 'post_text_field')             #TODO
