@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/posts.css' %}">
     <title>{% block title %}Placeholder_name{% endblock %}</title>
     {%block additional_stylesheets%}
     {%endblock%}
@@ -20,6 +21,10 @@
         <a href="{% url 'login_view' %}" class="myButton">Login</a>
     {% endif %}
     {% if user.is_authenticated %}
+    {% csrf_token %}
+        <label class="label">
+            <input class="searchBar" type="text" name="searchBar" spellcheck="false" placeholder="Search for something...">
+        </label>
         <a href="{% url 'logout_handler' %}" class="myButton">Logout</a>
     {% endif %}
 </div>

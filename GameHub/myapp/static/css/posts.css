@@ -1,46 +1,8 @@
-body {
+.postContainer{
     display: flex;
-    height: 100vh; 
-    margin: 0;
+    align-items: center;
 }
-.form{
-    margin-top:50px;
-    padding: 24px;
-    max-width: 300px;
-}
-.label-text{
-    font-size: 16px;
-    font-weight: 500;
-    color: #333333;
-    margin-bottom: 12px;
-}
-.label{
+.singlePost{
     display: flex;
-    flex-direction: column;
-    margin-bottom: 24px;
-}
-.input{
-    padding: 12px;
-    border: 2px solid #e0e0e0;
-    outline: none;
-    border-radius: 4px;
-    font-size: 16px;
-    color:#333333;
-}
-.input:focus{
-    border-color: #009578;
-}
-.loginButton {
-    display: inline-block;
-    margin: 0 auto;
-	background-color:#65117a;
-    color:#e0e0e0;
-	border-radius:28px;
-	border:7px solid #65117a;
-	cursor:pointer;
-	text-decoration:none;
-}
-.loginButton:hover {
-    border:7px solid #750b6e;
-	background-color:#750b6e;
+    padding: 10px 10px;
 }
