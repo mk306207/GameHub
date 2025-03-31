@@ -1,6 +1,19 @@
-{% extends base.html%}
+{% extends "base.html"%}
 {% load static %}
 {% block additional_stylesheets%}
 <link rel="stylesheet" type="text/css" href="{% static 'css/post_text_field.css' %}">
 {% endblock %}
 {% block title %} Millions are waiting... {% endblock %}
+{% block content %}
+<form class="form" method ="POST" action = "{% url 'post_maker' %}">
+    {% csrf_token %}
+    <label class="label">
+        <span class="label-text">Title</span>
+        <input class="input" type="text" name="title" placeholder="Catchy title...">
+    </label>
+    <label class="label">
+        <textarea class="input_post" id="post_content" rows="5" placeholder ="Spill your heart out..."></textarea>
+    </label>
+    <button type="submit" class="send_button" name ="button" value="send">Send!</button>
+</form>
+{% endblock %}

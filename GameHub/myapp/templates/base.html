@@ -38,7 +38,7 @@
     {% endif %}
     {% if request.resolver_match.url_name != 'login_view' and request.resolver_match.url_name != 'register' and user.is_authenticated%}
         <div class = "content">
-            <a href="{% url 'make_post' %}" class="postButton">What's on your mind...</a>
+            
             {% block content %}
 
             {% endblock %}

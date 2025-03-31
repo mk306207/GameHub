@@ -69,5 +69,9 @@ def delete_user(request):
     return redirect("login_view")
 
 def make_post(request):
-    user = myUser.objects.get(username = request.user.username) #TODO
-    return redirect(request, 'post_text_field')             #TODO
+    return render(request, 'make_post.html')
+
+def post_maker(request):
+    user = myUser.objects.get(username = request.user.username)
+    messages.success(request,f"You have subbmited your post mr{user.get_username()}")
+    return redirect("home")

@@ -8,6 +8,7 @@
 {% endblock %}
 {% block content %}
     {% if user.is_authenticated %}
+    <a href="{% url 'make_post' %}" class="postButton" method = "POST">What's on your mind...</a>
     <div class="postContainer">
         <p class="singlePost"> hello {{user.username}}</p>
         <p class="singlePost"> First post! </p>
