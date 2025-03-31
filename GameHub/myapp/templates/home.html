@@ -1,5 +1,22 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}Home Page{% endblock %}
+{% block additional_stylesheets %}
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}"> -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/posts.css' %}">
+{% endblock %}
 {% block content %}
+    {% if user.is_authenticated %}
+    <a> hello {{user.username}}</a>
+    {% csrf_token %}
+    <label class="label">
+        <input class="searchBar" type="text" name="login" spellcheck="false" placeholder="Search for something...">
+    </label>
+    <!-- <button type="submit" name="button" value="register" class="loginButton">Register</button> -->
+    {% endif %}
+    {% if not user.is_authenticated %}
+        <a>GameHub logo here</a>
+    {% endif %}
 {% endblock %}

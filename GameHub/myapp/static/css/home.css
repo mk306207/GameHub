@@ -1,4 +1,5 @@
 body{
+    display: flex;
     margin: 0;
     padding: 0;
     /*height: 100vh;*/
@@ -57,4 +58,14 @@ body{
 /* TEST */
 .content{
     margin-top:50px;
+    font-family: 'Lexend', sans-serif;
+}
+.pleaseWork{
+    margin-top:50px;
+    padding: 24px;
+    max-width: 300px;
+    font-family: 'Lexend', sans-serif;
+}
+.pleaseWork * {
+    font-family: 'Lexend', sans-serif;
 }
