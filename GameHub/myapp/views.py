@@ -1,9 +1,10 @@
 from django.shortcuts import render, HttpResponse,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from myapp.models import myUser
+from myapp.models import myUser, Game, Post
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
 # Create your views here.
 def home(request):
@@ -75,3 +76,8 @@ def post_maker(request):
     user = myUser.objects.get(username = request.user.username)
     messages.success(request,f"You have subbmited your post mr{user.get_username()}")
     return redirect("home")
+
+def getGames(request):
+    data = Game.objects.all().values('game')
+    data_list = list(data)
+    return JsonResponse(data_list,safe=False)

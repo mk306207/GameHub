@@ -26,7 +26,7 @@ body{
 .label{
     display: flex;
     flex-direction: column;
-    margin-bottom: 24px;
+    /* margin-bottom: 24px; */
 }
 .input{
     padding: 12px;
@@ -53,6 +53,29 @@ body{
 }
 .input_post:focus{
     border-color: #009578;
+}
+.select{
+    padding: 6px;
+    border: 2px solid #e0e0e0;
+    outline: none;
+    border-radius: 4px;
+    font-size: 16px;
+    color:#333333;
+    justify-content: center;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+.select:focus{
+    border-color: #009578;
+}
+.select:has(option[value=""]:checked) {
+    color: rgb(117, 117, 117);
+}
+option[value=""]{
+    display: none;
+}
+option{
+    color: black;
 }
 .send_button {
     display: inline-block;
