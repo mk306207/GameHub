@@ -28,6 +28,13 @@ class myUser(AbstractUser):
     def get_password(self):
         return self.password
     
+class Game(models.Model):
+    game = models.CharField(max_length=100,unique=True)
+
+    def __str__(self):
+        return self.game
+
 class Post(models.Model):
     author = models.ForeignKey(myUser,on_delete=models.CASCADE, to_field="username")
+    game_title = models.ForeignKey(Game, on_delete=models.DO_NOTHING, to_field="game",null=False,blank=False)
     text = models.TextField()
