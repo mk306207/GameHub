@@ -21,6 +21,10 @@
             data.reverse().forEach(post=>{
                 const div = document.createElement('div');
                 div.setAttribute('class','singlePost');
+                const likeNum = document.createElement("P");
+                likeNum.setAttribute('class','likesValue');
+                var likesRealValue = document.createTextNode(post.score);
+                likeNum.appendChild(likesRealValue);
                 const a = document.createElement("P");
                 a.setAttribute('class','postAuthor');
                 var titleText = document.createTextNode(post.author);
@@ -46,6 +50,7 @@
                 div2.appendChild(dislike);
                 p.appendChild(text);
                 div.appendChild(a);
+                div.appendChild(likeNum);
                 div.appendChild(g);
                 div.appendChild(t);
                 div.appendChild(p);

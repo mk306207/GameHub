@@ -94,6 +94,6 @@ def getGames(request):
     return JsonResponse(data_list,safe=False)
 
 def getPosts(request):
-    data = Post.objects.all().values('author','game_title','title','text')
+    data = Post.objects.all().values('author','game_title','title','text','score')
     data_list = list(data)
     return JsonResponse(data_list,safe=False)

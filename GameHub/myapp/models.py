@@ -39,6 +39,7 @@ class Post(models.Model):
     game_title = models.ForeignKey(Game, on_delete=models.DO_NOTHING, to_field="game",null=False,blank=False)
     title = models.CharField(max_length=50)
     text = models.TextField()
+    score = models.IntegerField(default=0)
 
     def __str__(self):
         return f"Author: {self.author}\nGame title: {self.game_title}\nTitle: {self.title}\nText:{self.text}\n"
