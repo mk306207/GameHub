@@ -78,6 +78,7 @@ option{
     color: black;
 }
 .send_button {
+    margin-top: 10px;
     display: inline-block;
 	background-color:#65117a;
     color:#e0e0e0;

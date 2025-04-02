@@ -53,6 +53,17 @@ body{
 .homeIcon:hover{
     color: #3b3737;
 }
+.profileIcon{
+    position: absolute;
+    top: 22px;
+    left: 60px;
+    color: #ffffff;
+    cursor: pointer;
+    text-decoration: none;
+}
+.profileIcon:hover{
+    color: #3b3737;
+}
 .content {
     flex-grow: 1;
     padding-top: 50px;

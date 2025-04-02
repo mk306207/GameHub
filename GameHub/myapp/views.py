@@ -26,7 +26,7 @@ def login_manager(request):
                 if user.check_password(password_input):
                     messages.success(request, "Welcome back!")
                     login(request,user)
-                    return redirect("dashboard")
+                    return redirect("home")
                 else:
                     messages.error(request,"Wrong password!")
             except ObjectDoesNotExist:

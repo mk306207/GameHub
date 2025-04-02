@@ -8,6 +8,7 @@
 }
 .singlePost{
     display: flex;
+    position: relative;
     align-items: center;
     flex-direction: column;
     background-color: aliceblue;
@@ -15,16 +16,27 @@
     border: 1px;
     display: flex;
     color: black;
-    padding : 10px 10px;
+    padding : 10px;
     margin: 5px;
+    padding-bottom: 20px;
     z-index: 2;
 }
+.inside{
+    position: absolute;
+    top:100%;
+    transform: translateY(-40px);
+    margin-top: 20px;
+    width: 320px;
+    height:20px;
+    background-color: rgb(207, 207, 207);
+    z-index: 3;
+}
 .postBody{
-    margin-top: 10px;
+    margin-top: 5px;
     margin-bottom: 5px;
 }
 .postTitle{
-    margin-top: 0px;
+    margin-top: 10px;
     margin-bottom: 0px;;
 }
 .postAuthor{
@@ -32,4 +44,28 @@
     color: gray;
     font-size: 9px;
     align-self: flex-start;
+}
+.likeIcon{
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    color: #ffffff;
+    cursor: pointer;
+    text-decoration: none;
+    transform: translateY(700%);
+}
+.likeIcon:hover{
+    color: #3b3737;
+}
+.dislikeIcon{
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    color: #ffffff;
+    cursor: pointer;
+    text-decoration: none;
+    transform: translateY(700%);
+}
+.dislikeIcon:hover{
+    color: #3b3737;
 }

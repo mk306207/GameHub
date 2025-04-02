@@ -36,11 +36,20 @@
                 const p = document.createElement("P");
                 p.setAttribute('class','postBody');
                 var text = document.createTextNode(post.text);
+                const div2 = document.createElement("div");
+                div2.setAttribute('class','inside');
+                const like = document.createElement("A");
+                like.setAttribute('class','fa-solid fa-check fa-xs likeIcon');
+                const dislike = document.createElement("A");
+                dislike.setAttribute('class','fa-solid fa-xmark fa-xs dislikeIcon');
+                div2.appendChild(like);
+                div2.appendChild(dislike);
                 p.appendChild(text);
                 div.appendChild(a);
                 div.appendChild(g);
                 div.appendChild(t);
                 div.appendChild(p);
+                div.appendChild(div2);
                 postsContainer.appendChild(div);
             })
             /*
