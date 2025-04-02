@@ -27,3 +27,9 @@
     margin-top: 0px;
     margin-bottom: 0px;;
 }
+.postAuthor{
+    margin: 0px;
+    color: gray;
+    font-size: 9px;
+    align-self: flex-start;
+}
