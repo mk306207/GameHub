@@ -9,9 +9,10 @@
 {% block content %}
     {% if user.is_authenticated %}
     <a href="{% url 'make_post' %}" class="postButton" method = "POST">What's on your mind...</a>
-    <div class="postContainer">
-        <div class="singlePost"> hello {{user.username}}
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis tempora laudantium facilis debitis praesentium unde asperiores dolorem nesciunt accusamus modi ipsum sequi non fuga eaque illo, optio nam! Id, ad?</p>
+    <div class="postContainer" id="postContainer_ID">
+        <div class="singlePost"> 
+            <p class="postTitle"> hello {{user.username}} </p>
+            <p class="postBody">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis tempora laudantium facilis debitis praesentium unde asperiores dolorem nesciunt accusamus modi ipsum sequi non fuga eaque illo, optio nam! Id, ad?</p>
         </div>
         <p class="singlePost"> First post! </p>
     </div>
@@ -20,7 +21,25 @@
         async function loadPosts(){
             const response = await fetch('api/getPosts');
             const data = await response.json();
-            console.log(data);
+            const postsContainer = document.getElementById("postContainer_ID");
+            console.log(data)
+            /*data.forEach(post=>{
+                const div = document.createElement('div');
+                div.className="singlePost";
+                const title = "test";
+                const text = "{% lorem 1 b random %}";
+                postsContainer.appendChild(div);
+            })*/
+
+            const div = document.createElement('div');
+            div.setAttribute('class','singlePost');
+            div.innerHTML = "Hello World!"
+            const p = document.createElement("P");
+            var text = document.createTextNode("lorem dsjfdshfjksdhf");
+            p.appendChild(text);
+            div.appendChild(p);
+            postsContainer.appendChild(div);
+            
         }
         loadPosts()
     </script>
