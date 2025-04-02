@@ -73,11 +73,27 @@ def make_post(request):
     return render(request, 'make_post.html')
 
 def post_maker(request):
-    user = myUser.objects.get(username = request.user.username)
-    messages.success(request,f"You have subbmited your post mr{user.get_username()}")
-    return redirect("home")
+    if request.method == "POST":
+        title_input = request.POST.get("title")
+        game_title_input= request.POST.get("select_game")
+        gameObject = Game.objects.get(game=game_title_input)
+        text_input = request.POST.get("text_input")
+        user = myUser.objects.get(username = request.user.username)
+        print(f"Title: {title_input}\n Game: {game_title_input}\n Text: {text_input}")
+        if(game_title_input == ""):
+            messages.error(request,"Please select a proper game")
+            return render(request,'make_post.html')
+        new_post = Post.objects.create(author=user,game_title = gameObject,title=title_input,text=text_input)
+        new_post.save()
+        messages.success(request,f"You have subbmited your post mr {user.get_username()}")
+        return redirect("home")
 
 def getGames(request):
     data = Game.objects.all().values('game')
+    data_list = list(data)
+    return JsonResponse(data_list,safe=False)
+
+def getPosts(request):
+    data = Post.objects.all().values_list('author','game_title','text')
     data_list = list(data)
     return JsonResponse(data_list,safe=False)

@@ -10,5 +10,6 @@ urlpatterns = [
     path("delete_user", views.delete_user, name = "delete_user"),
     path("make_post",views.make_post,name="make_post"),
     path("post_maker",views.post_maker,name="post_maker"),
-    path("api/getGames",views.getGames,name="getGames")
+    path("api/getGames",views.getGames,name="getGames"),
+    path("api/getPosts",views.getPosts,name="getPosts")
 ]

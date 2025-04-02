@@ -10,10 +10,20 @@
     {% if user.is_authenticated %}
     <a href="{% url 'make_post' %}" class="postButton" method = "POST">What's on your mind...</a>
     <div class="postContainer">
-        <p class="singlePost"> hello {{user.username}}</p>
+        <div class="singlePost"> hello {{user.username}}
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis tempora laudantium facilis debitis praesentium unde asperiores dolorem nesciunt accusamus modi ipsum sequi non fuga eaque illo, optio nam! Id, ad?</p>
+        </div>
         <p class="singlePost"> First post! </p>
     </div>
     {% endif %}
+    <script>
+        async function loadPosts(){
+            const response = await fetch('api/getPosts');
+            const data = await response.json();
+            console.log(data);
+        }
+        loadPosts()
+    </script>
 {% endblock %}
 {% block welcome %}
     <p class = "welcomeTextTitle"> GameHub </p>
