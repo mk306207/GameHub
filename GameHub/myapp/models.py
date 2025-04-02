@@ -43,3 +43,8 @@ class Post(models.Model):
 
     def __str__(self):
         return f"Author: {self.author}\nGame title: {self.game_title}\nTitle: {self.title}\nText:{self.text}\n"
+
+class postRatings(models.Model):
+    post_id = models.ForeignKey(Post,on_delete=models.CASCADE,to_field="id")
+    user_id = models.ForeignKey(myUser,on_delete=models.CASCADE,to_field="id")
+    user_rating = models.CharField(max_length=2,blank=True)
