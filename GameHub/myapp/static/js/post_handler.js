@@ -39,14 +39,7 @@ async function loadPosts(){
         like.addEventListener('click', function() {
             handleLike(post.id);
         });
-        const dislike = document.createElement("A");
-        dislike.setAttribute('class','fa-solid fa-xmark fa-xs dislikeIcon');
-        dislike.setAttribute('id','dislikeButton');
-        dislike.addEventListener('click', function() {
-            handleDislike(post.id);
-        });
         div2.appendChild(like);
-        div2.appendChild(dislike);
         p.appendChild(text);
         div.appendChild(a);
         div.appendChild(likeNum);
@@ -71,25 +64,6 @@ function getCookie(name) {
         }
     }
     return cookieValue; //we return csrf token value :)
-}
-async function handleDislike(postID){
-    const response = await fetch('/dislike_post/', {
-        method: 'POST',
-        headers: {
-            'X-CSRFToken': getCookie('csrftoken')
-        },
-        body: new URLSearchParams({
-            'post_id': postID,
-        })
-    });
-    const data = await response.json();
-    if (data.message) {
-        console.log(data.message);
-        document.getElementById(`likes_${postID}`).innerText = data.new_score;
-    } else {
-        console.log("This so called 'engineer' sucks")
-        console.error(data.error);
-    }
 }
 async function handleLike(postID){
     const response = await fetch('like_post/',{

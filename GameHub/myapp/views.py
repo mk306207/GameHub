@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from myapp.models import myUser, Game, Post
+from myapp.models import myUser, Game, Post, postRatings
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
@@ -98,20 +98,20 @@ def getPosts(request):
     data_list = list(data)
     return JsonResponse(data_list,safe=False)
 
-def dislikePost(request):
-    if request.method == 'POST':
-        post_id = request.POST.get('post_id')
-        post = Post.objects.get(id=post_id)
-        post.score = post.score - 1
-        post.save()
-        return JsonResponse({'message': 'Success!', 'new_score': post.score})
-    return JsonResponse({'error': 'error_400'}, status=400)
-
 def likePost(request):
     if request.method=="POST":
         post_id = request.POST.get('post_id')
         post = Post.objects.get(id = post_id)
-        post.score = post.score + 1
-        post.save()
+        liked = postRatings.objects.filter(post_id = post, user_id = request.user)
+        if not liked:
+            liked = postRatings.objects.create(post_id = post, user_id = request.user)
+            post.score = post.score + 1
+            print("+1")
+            post.save()
+        else:
+            liked = postRatings.objects.filter(post_id = post, user_id = request.user).delete()
+            post.score = post.score-1
+            print("-1")
+            post.save()
         return JsonResponse({'message': 'Success!', 'new_score':post.score})
     return JsonResponse({'error':'error_400',},status=400)

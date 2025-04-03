@@ -12,6 +12,5 @@ urlpatterns = [
     path("post_maker",views.post_maker,name="post_maker"),
     path("api/getGames",views.getGames,name="getGames"),
     path("api/getPosts",views.getPosts,name="getPosts"),
-    path('dislike_post/', views.dislikePost, name='dislike_post'),
     path('like_post/', views.likePost, name='like_post')
 ]
