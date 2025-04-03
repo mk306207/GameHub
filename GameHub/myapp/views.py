@@ -94,6 +94,24 @@ def getGames(request):
     return JsonResponse(data_list,safe=False)
 
 def getPosts(request):
-    data = Post.objects.all().values('author','game_title','title','text','score')
+    data = Post.objects.all().values('id','author','game_title','title','text','score')
     data_list = list(data)
     return JsonResponse(data_list,safe=False)
+
+def dislikePost(request):
+    if request.method == 'POST':
+        post_id = request.POST.get('post_id')
+        post = Post.objects.get(id=post_id)
+        post.score = post.score - 1
+        post.save()
+        return JsonResponse({'message': 'Success!', 'new_score': post.score})
+    return JsonResponse({'error': 'error_400'}, status=400)
+
+def likePost(request):
+    if request.method=="POST":
+        post_id = request.POST.get('post_id')
+        post = Post.objects.get(id = post_id)
+        post.score = post.score + 1
+        post.save()
+        return JsonResponse({'message': 'Success!', 'new_score':post.score})
+    return JsonResponse({'error':'error_400',},status=400)

@@ -8,6 +8,8 @@
 {% endblock %}
 {% block content %}
     {% if user.is_authenticated %}
+    {% csrf_token %}
+    <meta name="csrf-token" tokenValue="{{ csrf_token }}">
     <a href="{% url 'make_post' %}" class="postButton" method = "POST">What's on your mind...</a>
     <div class="postContainer" id="postContainer_ID">
     </div>

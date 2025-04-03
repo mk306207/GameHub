@@ -47,4 +47,3 @@ class Post(models.Model):
 class postRatings(models.Model):
     post_id = models.ForeignKey(Post,on_delete=models.CASCADE,to_field="id")
     user_id = models.ForeignKey(myUser,on_delete=models.CASCADE,to_field="id")
-    user_rating = models.CharField(max_length=2,blank=True)
