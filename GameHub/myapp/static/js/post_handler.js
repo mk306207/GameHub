@@ -35,7 +35,7 @@ async function loadPosts(){
         const like = document.createElement("A");
 
         like.setAttribute('class','fa-solid fa-check fa-xs likeIcon');
-        like.setAttribute('id','likeButton');
+        like.setAttribute('id',`likeButton_${post.id}`);
         like.addEventListener('click', function() {
             handleLike(post.id);
         });
@@ -79,6 +79,15 @@ async function handleLike(postID){
     if(data.message){
         console.log(data.message);
         document.getElementById(`likes_${postID}`).innerHTML = data.new_score;
+        like_button = document.getElementById(`likeButton_${postID}`);
+        const decision = data.liked_flag;
+        console.log(decision);
+        if (decision){
+            like_button.style.color = "#28e01b";
+        }
+        else{
+            like_button.style.color = "#ffffff";
+        }
     } else {
         console.log("This so called 'engineer' sucks");
         console.log(data.error);

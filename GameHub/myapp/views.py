@@ -103,15 +103,18 @@ def likePost(request):
         post_id = request.POST.get('post_id')
         post = Post.objects.get(id = post_id)
         liked = postRatings.objects.filter(post_id = post, user_id = request.user)
+        liked_flag = False
         if not liked:
             liked = postRatings.objects.create(post_id = post, user_id = request.user)
             post.score = post.score + 1
             print("+1")
+            liked_flag=True
             post.save()
         else:
             liked = postRatings.objects.filter(post_id = post, user_id = request.user).delete()
             post.score = post.score-1
             print("-1")
             post.save()
-        return JsonResponse({'message': 'Success!', 'new_score':post.score})
+            liked_flag=False
+        return JsonResponse({'message': 'Success!', 'new_score':post.score, 'liked_flag':liked_flag})
     return JsonResponse({'error':'error_400',},status=400)
