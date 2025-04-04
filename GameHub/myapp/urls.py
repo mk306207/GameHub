@@ -12,5 +12,7 @@ urlpatterns = [
     path("post_maker",views.post_maker,name="post_maker"),
     path("api/getGames",views.getGames,name="getGames"),
     path("api/getPosts",views.getPosts,name="getPosts"),
-    path('like_post/', views.likePost, name='like_post')
+    path('like_post/', views.likePost, name='like_post'),
+    path('view_profile/<int:user_id>',views.view_profile,name="view_profile"),
+    path('api/checkLike',views.checkLike,name="checkLike"),
 ]

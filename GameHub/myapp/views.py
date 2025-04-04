@@ -118,3 +118,25 @@ def likePost(request):
             liked_flag=False
         return JsonResponse({'message': 'Success!', 'new_score':post.score, 'liked_flag':liked_flag})
     return JsonResponse({'error':'error_400',},status=400)
+
+def view_profile(request):
+    user = myUser.objects.get(username = request.user.username)
+    if user:
+        return redirect(f"view_profile/{user.id}")
+    else:
+        return render(request,"page_not_found.html")
+    
+def checkLike(request):
+    if request.method == 'POST':
+        post_id = request.POST.get('post_id')
+        post = Post.objects.get(id = post_id)
+        try:
+            post_liked = postRatings.objects.get(post_id = post,user_id = request.user)
+            if post_liked:
+                flag = True
+                return JsonResponse({'message':'success', 'flag':flag})
+        except ObjectDoesNotExist:
+                flag = False
+                return JsonResponse({'message':'success','flag':flag})
+    return JsonResponse({'error':'error_400',},status=400)
+        

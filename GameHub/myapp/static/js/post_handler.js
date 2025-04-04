@@ -5,9 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
 async function loadPosts(){
     const response = await fetch('api/getPosts');
     const data = await response.json();
+    data.reverse();
     const postsContainer = document.getElementById("postContainer_ID");
-    console.log(data)
-    data.reverse().forEach(post=>{
+    const checks = await Promise.all(data.map(post => checkLike(post.id)));
+    data.forEach((post,index)=>{
         const div = document.createElement('div');
         div.setAttribute('class','singlePost');
         const likeNum = document.createElement("P");
@@ -32,13 +33,20 @@ async function loadPosts(){
         var text = document.createTextNode(post.text);
         const div2 = document.createElement("div");
         div2.setAttribute('class','inside');
-        const like = document.createElement("A");
 
+        const like = document.createElement("A");
         like.setAttribute('class','fa-solid fa-check fa-xs likeIcon');
         like.setAttribute('id',`likeButton_${post.id}`);
         like.addEventListener('click', function() {
             handleLike(post.id);
         });
+
+        if (checks[index]) {
+            like.style.color = "#28e01b";
+        } else {
+            like.style.color = "#ffffff";
+        }
+
         div2.appendChild(like);
         p.appendChild(text);
         div.appendChild(a);
@@ -48,7 +56,6 @@ async function loadPosts(){
         div.appendChild(p);
         div.appendChild(div2);
         postsContainer.appendChild(div);
-        console.log("POST ID: ",post.id," LOADED")
     })
 }
 function getCookie(name) {
@@ -77,19 +84,41 @@ async function handleLike(postID){
     });
     const data = await response.json()
     if(data.message){
-        console.log(data.message);
         document.getElementById(`likes_${postID}`).innerHTML = data.new_score;
         like_button = document.getElementById(`likeButton_${postID}`);
         const decision = data.liked_flag;
         console.log(decision);
+
         if (decision){
             like_button.style.color = "#28e01b";
+            return true;
         }
         else{
             like_button.style.color = "#ffffff";
+            return false;
         }
     } else {
         console.log("This so called 'engineer' sucks");
         console.log(data.error);
+    }
+}
+async function checkLike(postID) {
+    const response = await fetch('api/checkLike',{
+        method:'POST',
+        headers:{
+            'X-CSRFToken':getCookie('csrftoken')
+        },
+        body: new URLSearchParams({
+            'post_id':postID,
+        })
+        }
+    )
+    const data = await response.json();
+    if(data.message){
+        console.log(data.flag)
+        return (data.flag);
+    }
+    else{
+        console.log(data.error)
     }
 }
