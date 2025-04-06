@@ -16,8 +16,9 @@ async function loadPosts(){
         likeNum.setAttribute('id', `likes_${post.id}`);
         var likesRealValue = document.createTextNode(post.score);
         likeNum.appendChild(likesRealValue);
-        const a = document.createElement("P");
+        const a = document.createElement("A");
         a.setAttribute('class','postAuthor');
+        a.setAttribute('href',`view_profile/1`);
         var titleText = document.createTextNode(post.author);
         a.appendChild(titleText);
         const g = document.createElement("P");

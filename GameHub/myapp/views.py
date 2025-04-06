@@ -119,10 +119,11 @@ def likePost(request):
         return JsonResponse({'message': 'Success!', 'new_score':post.score, 'liked_flag':liked_flag})
     return JsonResponse({'error':'error_400',},status=400)
 
-def view_profile(request):
-    user = myUser.objects.get(username = request.user.username)
+def view_profile(request,user_id):
+    user = myUser.objects.get(id = user_id)
+    print(user_id)
     if user:
-        return redirect(f"view_profile/{user.id}")
+        return render(request,"view_profile.html")
     else:
         return render(request,"page_not_found.html")
     
