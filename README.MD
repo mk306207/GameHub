@@ -16,6 +16,7 @@ py manage.py runserver
 ```
 
 ### TODO LIST TO REMEMBER IN THE NEAR FUTURE
-📌 **posts**
-📌 **fix "whats on your mind" button**
-📌 **logging out after closing browser**
+✅ **posts**  
+✅ **fix "whats on your mind" button**  
+📌 **logging out after closing browser**  
+📌 **dynamic url - rebuild model so i can take user id from post**  
