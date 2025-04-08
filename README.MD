@@ -2,7 +2,7 @@
 
 ## What is this?
 I created something that 15 year old me would use to find someone to play with when my irl friends are off.  
-Link with people and play games, simple, yet noone nailed it yet.    
+Link with people and play games, simple, yet no one nailed it yet.    
 ## How to run a server?
 Simply just type in terminal this, but make sure you are in the right directory.
 To ensure that type
