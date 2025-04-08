@@ -71,7 +71,7 @@ def delete_user(request):
     return redirect("login_view")
 
 def make_post(request):
-    return render(request, 'make_post.html')
+    return render(request, 'make_post.html',{'m':"makePost"})
 
 def post_maker(request):
     if request.method == "POST":
@@ -88,6 +88,14 @@ def post_maker(request):
         new_post.save()
         messages.success(request,f"You have subbmited your post mr {user.get_username()}")
         return redirect("home")
+    
+def link_account(request):
+    return render(request,"make_post.html",{'m':'linkAccount'})
+    
+def create_linkedAcc(request):
+    if request.method == "POST":
+        messages.success(request,"Linked!")
+        return redirect("dashboard")
 
 def getGames(request):
     data = Game.objects.all().values('game')

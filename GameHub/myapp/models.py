@@ -35,6 +35,11 @@ class Game(models.Model):
     def __str__(self):
         return self.game
 
+class myCustonDict(models.Model):
+    user_id = models.ForeignKey(myUser,on_delete=models.CASCADE)
+    nickname = models.CharField(max_length=40)
+    game = models.ForeignKey(Game,on_delete=models.CASCADE)
+    
 class Post(models.Model):
     author = models.ForeignKey(myUser,on_delete=models.CASCADE, to_field="username")
     game_title = models.ForeignKey(Game, on_delete=models.DO_NOTHING, to_field="game",null=False,blank=False)

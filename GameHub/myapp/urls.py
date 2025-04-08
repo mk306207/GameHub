@@ -15,4 +15,6 @@ urlpatterns = [
     path('like_post/', views.likePost, name='like_post'),
     path('view_profile/<int:user_id>',views.view_profile,name="view_profile"),
     path('api/checkLike',views.checkLike,name="checkLike"),
+    path("link_account",views.link_account,name="link_account"),
+    path("create_linkedAcc",views.create_linkedAcc,name="create_linkedAcc"),
 ]

@@ -5,20 +5,35 @@
 {% endblock %}
 {% block title %} Millions are waiting... {% endblock %}
 {% block content %}
-<form class="form" method ="POST" action = "{% url 'post_maker' %}">
+{%if m == "makePost"%}
+    <form class="form" method ="POST" action = "{% url 'post_maker' %}">
+        {% csrf_token %}
+        <label class="label">
+            <span class="label-text">Title</span>
+            <input class="input" type="text" name="title" placeholder="Catchy title...">
+            <select class="select" id="game" name="select_game">
+                <option value="" hidden>Select your option</option>
+            </select>
+        </label>
+        <label class="label">
+            <textarea class="input_post" id="post_content" rows="5" name="text_input" placeholder ="Spill your heart out..."></textarea>
+        </label>
+        <button type="submit" class="send_button" name ="button" value="send">Send!</button>
+    </form>
+{% endif %}
+{%if m == "linkAccount"%}
+<form class="form" method ="POST" action = "{% url 'create_linkedAcc' %}">
     {% csrf_token %}
     <label class="label">
-        <span class="label-text">Title</span>
-        <input class="input" type="text" name="title" placeholder="Catchy title...">
+        <span class="label-text">Fill in data</span>
+        <input class="input" type="text" name="title" placeholder="Your in-game nickname">
         <select class="select" id="game" name="select_game">
             <option value="" hidden>Select your option</option>
         </select>
     </label>
-    <label class="label">
-        <textarea class="input_post" id="post_content" rows="5" name="text_input" placeholder ="Spill your heart out..."></textarea>
-    </label>
-    <button type="submit" class="send_button" name ="button" value="send">Send!</button>
+    <button type="submit" class="send_button" name ="button" value="link">Link!</button>
 </form>
+{% endif %}
 <script>
     async function fillSelectWithGames(){
         const response = await fetch('api/getGames');
