@@ -5,6 +5,7 @@ from myapp.models import myUser, Game, Post, postRatings
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+import json
 
 # Create your views here.
 def home(request):
@@ -96,6 +97,9 @@ def getGames(request):
 def getPosts(request):
     data = Post.objects.all().values('id','author','game_title','title','text','score')
     data_list = list(data)
+    for i in range(0,len(data_list)):
+        data_list[i]['authorID'] = getAuthorObject(data_list[i]['author'])
+    print(data_list)
     return JsonResponse(data_list,safe=False)
 
 def likePost(request):
@@ -140,4 +144,12 @@ def checkLike(request):
                 flag = False
                 return JsonResponse({'message':'success','flag':flag})
     return JsonResponse({'error':'error_400',},status=400)
-        
+
+def getAuthorObject(data):
+    try:
+        user = myUser.objects.get(username=data)
+        #print(user.id)
+        return user.id
+    except ObjectDoesNotExist:
+        print("We do not expect that!")
+        return 0

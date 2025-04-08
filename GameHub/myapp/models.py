@@ -18,13 +18,14 @@ from django.contrib.auth.models import AbstractUser
 #         return self.email
 
 class myUser(AbstractUser):
+    id = models.AutoField(primary_key=True)
     email = models.EmailField(unique=True)
     def save(self, *args, **kwargs):
         self.first_name = ""
         self.last_name = ""
         super().save(*args, **kwargs)
     def __str__(self):
-        return self.username
+        return str(self.id)
     def get_password(self):
         return self.password
     
