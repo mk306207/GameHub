@@ -173,3 +173,8 @@ def getAuthorObject(data):
     except ObjectDoesNotExist:
         print("We do not expect that!")
         return 0
+    
+def returnMyAccounts(request):
+    data = list(myCustonDict.objects.filter(user_id = request.user).values('user_id','nickname','game'))
+    return JsonResponse(data,safe=False)
+    

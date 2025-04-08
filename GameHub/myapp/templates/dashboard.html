@@ -11,4 +11,10 @@
 <p>Hello! {{request.user.username}}</p>
 <a href="delete_user"> Delete user</a>
 <a href="link_account" method = "POST"> Link an account</a>
+
+<script src="{% static 'js/accounts.js' %}">
+    document.addEventListener('DOMContentLoaded', function() {
+        loadAccounts();
+    });
+</script>
 {% endblock %}

@@ -17,4 +17,5 @@ urlpatterns = [
     path('api/checkLike',views.checkLike,name="checkLike"),
     path("link_account",views.link_account,name="link_account"),
     path("create_linkedAcc",views.create_linkedAcc,name="create_linkedAcc"),
+    path('api/returnMyAccounts',views.returnMyAccounts,name="returnMyAccounts"),
 ]
