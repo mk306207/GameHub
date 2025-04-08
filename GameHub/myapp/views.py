@@ -99,7 +99,7 @@ def getPosts(request):
     data_list = list(data)
     for i in range(0,len(data_list)):
         data_list[i]['authorID'] = getAuthorObject(data_list[i]['author'])
-    print(data_list)
+    #print(data_list)
     return JsonResponse(data_list,safe=False)
 
 def likePost(request):
@@ -124,12 +124,13 @@ def likePost(request):
     return JsonResponse({'error':'error_400',},status=400)
 
 def view_profile(request,user_id):
-    user = myUser.objects.get(id = user_id)
-    print(user_id)
-    if user:
-        return render(request,"view_profile.html")
+    author = myUser.objects.get(id = user_id)
+    if author == request.user:
+        return render(request,"dashboard.html")
+    if author:
+        return render(request,"view_profile.html",{'author':author})
     else:
-        return render(request,"page_not_found.html")
+        messages.error("Invalid user id")
     
 def checkLike(request):
     if request.method == 'POST':
