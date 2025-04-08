@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from myapp.models import myUser, Game, Post, postRatings
+from myapp.models import myUser, Game, Post, postRatings, myCustonDict
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
@@ -94,7 +94,18 @@ def link_account(request):
     
 def create_linkedAcc(request):
     if request.method == "POST":
-        messages.success(request,"Linked!")
+        game_input = request.POST.get("select_game")
+        nickname_input = request.POST.get("nickname")
+        gameObject = Game.objects.get(game=game_input)
+        print(f"game: {game_input}, nickname: {nickname_input}")
+        gameAccount = myCustonDict.objects.filter(nickname = nickname_input, game = gameObject)
+        if gameAccount:
+            gameAccount = myCustonDict.objects.get(nickname = nickname_input)
+            messages.error(request,f"This account is already linked to account called \"{gameAccount.user_id.username}\"")
+        else:
+            gameAccount = myCustonDict.objects.create(user_id = request.user, nickname = nickname_input, game = gameObject)
+            gameAccount.save()
+            messages.success(request,"Linked!")
         return redirect("dashboard")
 
 def getGames(request):
