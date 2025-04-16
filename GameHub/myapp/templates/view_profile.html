@@ -6,8 +6,10 @@
 {% block title %} Test {% endblock%}
 {%block content%}
     {% csrf_token %}
+    <data value = "other" id="switch"></data>
+    <data value = {{author.id}} id="authorID"></data>
     <h1> Hello this is {{author.username}} page </h1>
-    <div class="accountList"> LIST!!! </div>
+    <div class="accountList" id="accountList"></div>
     <script type="module" src="{% static 'js/accounts.js' %}">
         document.addEventListener('DOMContentLoaded', function() {
             loadAccounts();

@@ -9,10 +9,11 @@
 
 {% block content %}
     {% csrf_token %}
+    <data value = "self" id="switch"></data>
     <p>Hello! {{request.user.username}}</p>
     <a href="delete_user"> Delete user</a>
     <a href="link_account" method = "POST"> Link an account</a>
-    <div class = "accountList" id="accountList"> LIST!!! </div>
+    <div class = "accountList" id="accountList"></div>
     <script type="module" src="{% static 'js/accounts.js' %}">
         document.addEventListener('DOMContentLoaded', function() {
             loadAccounts();

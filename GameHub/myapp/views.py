@@ -177,8 +177,13 @@ def getAuthorObject(data):
 def returnMyAccounts(request):
     if request.method == 'POST':
         switch = request.POST.get('switch');print(switch)
-        data = list(myCustonDict.objects.filter(user_id = request.user).values('user_id','nickname','game'))
-        return JsonResponse(data,safe=False)
+        if switch == "self":
+            data = list(myCustonDict.objects.filter(user_id = request.user).values('user_id','nickname','game'))
+            return JsonResponse(data,safe=False)
+        elif switch == "other":
+            authorID = request.POST.get('authorID')
+            data = list(myCustonDict.objects.filter(user_id = authorID).values('user_id','nickname','game'))
+            return JsonResponse(data,safe=False)
     else:
         print("Doesnt work...")
     

@@ -18,4 +18,5 @@ urlpatterns = [
     path("link_account",views.link_account,name="link_account"),
     path("create_linkedAcc",views.create_linkedAcc,name="create_linkedAcc"),
     path('api/returnMyAccounts',views.returnMyAccounts,name="returnMyAccounts"),
+    path('view_profile/api/returnMyAccounts',views.returnMyAccounts,name="returnMyAccounts"),
 ]
