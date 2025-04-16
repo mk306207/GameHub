@@ -5,7 +5,7 @@ from myapp.models import myUser, Game, Post, postRatings, myCustonDict
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-import json
+import json, sys
 
 # Create your views here.
 def home(request):
@@ -175,6 +175,10 @@ def getAuthorObject(data):
         return 0
     
 def returnMyAccounts(request):
-    data = list(myCustonDict.objects.filter(user_id = request.user).values('user_id','nickname','game'))
-    return JsonResponse(data,safe=False)
+    if request.method == 'POST':
+        switch = request.POST.get('switch');print(switch)
+        data = list(myCustonDict.objects.filter(user_id = request.user).values('user_id','nickname','game'))
+        return JsonResponse(data,safe=False)
+    else:
+        print("Doesnt work...")
     

@@ -14,7 +14,7 @@
     <div class="postContainer" id="postContainer_ID">
     </div>
     {% endif %}
-    <script src="{% static 'js/post_handler.js' %}">
+    <script type="module" src="{% static 'js/post_handler.js' %}">
         document.addEventListener('DOMContentLoaded', function() {
             loadPosts();
         });

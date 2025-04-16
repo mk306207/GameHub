@@ -8,13 +8,14 @@
 {% endblock %}
 
 {% block content %}
-<p>Hello! {{request.user.username}}</p>
-<a href="delete_user"> Delete user</a>
-<a href="link_account" method = "POST"> Link an account</a>
-
-<script src="{% static 'js/accounts.js' %}">
-    document.addEventListener('DOMContentLoaded', function() {
-        loadAccounts();
-    });
-</script>
+    {% csrf_token %}
+    <p>Hello! {{request.user.username}}</p>
+    <a href="delete_user"> Delete user</a>
+    <a href="link_account" method = "POST"> Link an account</a>
+    <div class = "accountList" id="accountList"> LIST!!! </div>
+    <script type="module" src="{% static 'js/accounts.js' %}">
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAccounts();
+        });
+    </script>
 {% endblock %}

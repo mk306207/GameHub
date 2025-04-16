@@ -59,7 +59,8 @@ async function loadPosts(){
         postsContainer.appendChild(div);
     })
 }
-function getCookie(name) {
+
+export function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
         const cookies = document.cookie.split(';');
@@ -73,6 +74,7 @@ function getCookie(name) {
     }
     return cookieValue; //we return csrf token value :)
 }
+
 async function handleLike(postID){
     const response = await fetch('like_post/',{
         method:'POST',
