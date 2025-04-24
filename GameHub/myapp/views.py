@@ -14,6 +14,9 @@ def home(request):
 def login_view(request):
     return render(request, 'login.html')
 
+def PMs(request):
+    return render(request, 'PMs.html')
+
 def login_manager(request):
     if request.method == "POST":
         login_input = request.POST.get("login")

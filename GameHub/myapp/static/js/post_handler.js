@@ -87,18 +87,18 @@ async function handleLike(postID){
     });
     const data = await response.json()
     if(data.message){
+        //console.log("a")
         document.getElementById(`likes_${postID}`).innerHTML = data.new_score;
-        like_button = document.getElementById(`likeButton_${postID}`);
+        let like_button = document.getElementById(`likeButton_${postID}`);
         const decision = data.liked_flag;
         console.log(decision);
 
         if (decision){
-            like_button.style.color = "#28e01b";
-            return true;
-        }
-        else{
-            like_button.style.color = "#ffffff";
-            return false;
+            like_button.classList.add("liked");
+            like_button.classList.remove("notLiked");
+        } else {
+            like_button.classList.remove("liked");
+            like_button.classList.add("notLiked");
         }
     } else {
         console.log("This so called 'engineer' sucks");

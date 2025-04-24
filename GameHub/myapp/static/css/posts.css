@@ -77,3 +77,10 @@
 .dislikeIcon:hover{
     color: #3b3737;
 }
+.likeIcon.liked {
+    color: #28e01b !important;
+}
+
+.likeIcon.notLiked {
+    color: #ffffff !important;
+}

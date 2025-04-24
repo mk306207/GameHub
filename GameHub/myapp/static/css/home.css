@@ -64,6 +64,17 @@ body{
 .profileIcon:hover{
     color: #3b3737;
 }
+.PMsIcon{
+    position: absolute;
+    top: 22px;
+    left: 110px;
+    color: #ffffff;
+    cursor: pointer;
+    text-decoration: none;
+}
+.PMsIcon:hover{
+    color: #3b3737;
+}
 .content {
     flex-grow: 1;
     padding-top: 50px;
