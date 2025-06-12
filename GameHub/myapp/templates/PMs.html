@@ -1,2 +1,15 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title%}Your messages{% endblock %}
+
+{% block additional_stylesheets%}
+<link rel="stylesheet" type="text/css" href="{% static 'css/pms.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class = "pmsContainer">
+        <a>a</a>
+        <a>b</a>
+        <a>c</a>
+    </div>
+{% endblock %}

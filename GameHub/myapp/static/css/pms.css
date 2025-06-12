@@ -1,0 +1,15 @@
+body{
+    padding-top: 50px;
+}
+.pmsContainer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width:50%;
+    height: 85%;
+    transform: translateX(50%);
+    z-index: 1;
+    background-color: aliceblue;
+    color: black;
+    border-radius:28px;
+}
